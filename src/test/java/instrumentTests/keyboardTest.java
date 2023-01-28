@@ -49,5 +49,10 @@ public class keyboardTest {
         assertEquals(1200, keyboard.getPrice(), 0.01);
     }
 
+    @Test
+    public void canGetKeyboardMarkup(){
+        assertEquals(300, keyboard.markUp(), 0.01);
+    }
+
 
 }

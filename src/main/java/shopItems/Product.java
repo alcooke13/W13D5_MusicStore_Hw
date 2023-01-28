@@ -1,6 +1,8 @@
 package shopItems;
 
-public class Product {
+import behaviors.ISell;
+
+public class Product implements ISell {
 
     private String productName;
     private double cost;
@@ -22,5 +24,9 @@ public class Product {
 
     public double getPrice() {
         return this.price;
+    }
+
+    public double markUp() {
+        return this.price - this.cost;
     }
 }

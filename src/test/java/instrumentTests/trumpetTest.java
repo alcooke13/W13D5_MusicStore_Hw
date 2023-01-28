@@ -51,4 +51,9 @@ public class trumpetTest {
         assertEquals(600, trumpet.getPrice(), 0.01);
     }
 
+    @Test
+    public void canGetTrumpetMarkup(){
+        assertEquals(150, trumpet.markUp(), 0.01);
+    }
+
 }

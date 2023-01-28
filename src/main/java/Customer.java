@@ -1,3 +1,4 @@
+import behaviors.ISell;
 import instruments.Instrument;
 
 import java.util.ArrayList;
@@ -7,12 +8,12 @@ public class Customer {
     private String name;
     private double money;
 
-    private ArrayList<Instrument> instrumentCollection;
+    private ArrayList<ISell> instrumentCollection;
 
     public Customer(String name, double money) {
         this.name = name;
         this.money = money;
-        this.instrumentCollection = new ArrayList<Instrument>();
+        this.instrumentCollection = new ArrayList<ISell>();
     }
 
     public String getName() {
@@ -30,4 +31,19 @@ public class Customer {
     public void reduceMoney(double amount){
         this.money -= amount;
     }
+
+    public boolean canBuy(ISell item){
+        return item.getPrice() <= this.money;
+    }
+
+    public void buy(ISell item){
+        this.money -= item.getPrice();
+        this.addItemToCollection(item);
+    }
+
+    public void addItemToCollection(ISell item){
+        this.instrumentCollection.add(item);
+    }
+
+
 }
