@@ -36,11 +36,12 @@ public class Customer {
         return item.getPrice() <= this.money;
     }
 
-    public void buy(ISell item){
-        this.money -= item.getPrice();
-        this.addItemToCollection(item);
+    public void buy(ISell item) {
+        if (canBuy(item)) {
+            this.money -= item.getPrice();
+            this.addItemToCollection(item);
+        }
     }
-
     public void addItemToCollection(ISell item){
         this.instrumentCollection.add(item);
     }

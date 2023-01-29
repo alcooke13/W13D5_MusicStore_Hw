@@ -72,9 +72,9 @@ public class MusicShopTest {
     }
 
     @Test
-    public void checkStockDecreasesSellingGuitar(){
-        musicShop.sell(customer, guitar);
-        assertFalse(musicShop.getStock().contains(guitar));
+    public void checkStockDecreasesSellingMusicSheet(){
+        musicShop.sell(customer, musicSheet);
+        assertFalse(musicShop.getStock().contains(musicSheet));
         assertEquals(3, musicShop.getStockCount());
     }
 
