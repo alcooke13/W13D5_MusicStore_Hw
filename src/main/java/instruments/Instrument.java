@@ -1,8 +1,9 @@
 package instruments;
 
+import behaviors.IPlay;
 import behaviors.ISell;
 
-public abstract class Instrument implements ISell {
+public abstract class Instrument implements ISell, IPlay {
 
     private InstrumentType instrumentType;
     private String make;

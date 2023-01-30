@@ -2,7 +2,7 @@ package shopItems;
 
 import behaviors.ISell;
 
-public class Product implements ISell {
+public abstract class Product implements ISell {
 
     private String productName;
     private double cost;
