@@ -1,6 +1,10 @@
 import behaviors.ISell;
+import instruments.Instrument;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
 
 public class MusicShop {
@@ -57,4 +61,15 @@ public class MusicShop {
             this.addToTill(item.getPrice());
         }
     }
+
+    public ISell findCheapest(){
+       ISell cheapest = this.stock.get(0);
+        for(ISell item : this.stock){
+            if(item.getPrice() < cheapest.getPrice()){
+                cheapest = item;
+            }
+        }
+        return cheapest;
+    }
+
 }

@@ -1,3 +1,4 @@
+import behaviors.ISell;
 import instruments.Guitar;
 import instruments.InstrumentType;
 import instruments.Trumpet;
@@ -6,8 +7,11 @@ import org.junit.Test;
 import shopItems.DrumStick;
 import shopItems.MusicSheet;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 public class MusicShopTest {
 
@@ -23,10 +27,10 @@ public class MusicShopTest {
     public void before(){
         musicShop = new MusicShop("Music Land", 5000.00);
         guitar = new Guitar(InstrumentType.GUITAR, "Gibson", "Brown", 6, 500, 600);
-        trumpet = new Trumpet(InstrumentType.TRUMPET, "Yamaha", "Black", 8, 450, 600);
+        trumpet = new Trumpet(InstrumentType.TRUMPET, "Yamaha", "Black", 8, 390, 450);
         drumStick = new DrumStick("Sticks", 20.00, 30.00);
         musicSheet = new MusicSheet("Sheets", 25.00, 35.00);
-        customer = new Customer("Jeff", 2000.00);
+        customer = new Customer("Jeff", 490.00);
 
         //Adding instrument and items to inventory;
         musicShop.addToStock(guitar);
@@ -34,6 +38,8 @@ public class MusicShopTest {
         musicShop.addToStock(drumStick);
         musicShop.addToStock(musicSheet);
 
+        //
+        List<ISell> stock = Arrays.asList(guitar, trumpet, drumStick, musicSheet);
 
     }
 
@@ -61,13 +67,13 @@ public class MusicShopTest {
 
     @Test
     public void canGetTotalProfitPotentialFromStock(){
-        assertEquals(270, musicShop.countPotentialProfit());
+        assertEquals(180, musicShop.countPotentialProfit());
     }
 
     @Test
     public void checkTillIncreasesSellingGuitar(){
         musicShop.sell(customer, guitar);
-        assertEquals(5600.00, musicShop.getTill(), 0.01);
+        assertEquals(5000.00, musicShop.getTill(), 0.01);
 
     }
 
@@ -77,5 +83,21 @@ public class MusicShopTest {
         assertFalse(musicShop.getStock().contains(musicSheet));
         assertEquals(3, musicShop.getStockCount());
     }
+
+    @Test
+    public void canGetWhichItemsCustomerCanAfford(){
+        ArrayList<ISell> items = new ArrayList<ISell>();
+        items.add(trumpet);
+        items.add(drumStick);
+        items.add(musicSheet);
+        assertEquals(items, customer.allAffordable(musicShop.getStock()));
+
+    }
+
+    @Test
+    public void findCheapestItem(){
+        assertEquals(drumStick, musicShop.findCheapest());
+    }
+
 
 }

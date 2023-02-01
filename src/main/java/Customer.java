@@ -46,5 +46,15 @@ public class Customer {
         this.instrumentCollection.add(item);
     }
 
+    public ArrayList<ISell> allAffordable(ArrayList<ISell> products){
+        ArrayList<ISell> affordableProducts = new ArrayList<ISell>();
+        for(ISell product : products){
+            if(product.getPrice() <= this.money){
+                affordableProducts.add(product);
+            }
+        }
+        return affordableProducts;
+    }
+
 
 }
